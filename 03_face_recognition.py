@@ -12,7 +12,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0
 names = ['None', 'xyz', 'Paula', 'Ilza', 'Z', 'W'] 
 
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cam.set(3, 640) 
 cam.set(4, 480) 
 
