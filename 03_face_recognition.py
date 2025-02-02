@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os 
+import csv
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer.yml')
@@ -10,7 +11,20 @@ faceCascade = cv2.CascadeClassifier(cascadePath);
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 id = 0
-names = ['None', 'xyz', 'Paula', 'Ilza', 'Z', 'W'] 
+rows=[]
+
+with open("Id_Name_ref_sheet.csv",'r') as csvfile:
+    csvreader=csv.reader(csvfile)
+
+    for row in csvreader:  
+        rows.append(row)
+
+names = [] 
+i=0
+
+while i!=len(rows):
+    names.append(rows[i][1])
+    i=i+1
 
 cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cam.set(3, 640) 
@@ -39,6 +53,7 @@ while True:
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
 
         if (confidence < 100):
+            id=id-1
             id = names[id]
             confidence = "  {0}%".format(round(100 - confidence))
         else:
