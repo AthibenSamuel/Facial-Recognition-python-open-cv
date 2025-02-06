@@ -21,7 +21,6 @@ with open(filename,"r",newline='') as csvfile:
 
 data=[id,name]
 ogdata.append(data)
-print(ogdata)
 
 with open(filename,"w",newline='') as csvfile:
     filewriter=csv.writer(csvfile)
@@ -40,8 +39,7 @@ while(True):
 
         cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)     
         count += 1
-                
-        #cv2.imwrite("dataset/User." + str(id) + '.' + str(count) + ".jpg", img)
+
         cv2.imwrite("dataset/User." + str(id) + '.' + str(count) + "."+name+".jpg", gray[y:y+h,x:x+w])
         
         cv2.imshow('image', img)
