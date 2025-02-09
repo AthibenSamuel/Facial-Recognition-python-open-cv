@@ -11,13 +11,19 @@ face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 filename="Id_Name_ref_sheet.csv"
 ogdata=[]
 
-id = input('\n enter face id end press <return> ==>  ')
 name = input('\n enter face name end press <return> ==>  ')
 
 with open(filename,"r",newline='') as csvfile:
     filereader=csv.reader(csvfile)
     for row in filereader:
         ogdata.append(row)
+
+i=len(ogdata)
+if i!=0:
+    id=int(ogdata[i-1][0])
+    id=id+1
+else:
+    id=1
 
 data=[id,name]
 ogdata.append(data)
